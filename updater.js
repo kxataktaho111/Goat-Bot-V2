@@ -12,7 +12,7 @@ catch (e) {
 }
 
 const sep = path.sep;
-const currentConfig = require('./config.json');
+const currentConfig = require('./config.dev.json');
 const langCode = currentConfig.language;
 const execSync = require('child_process').execSync;
 
@@ -112,7 +112,7 @@ fs.copyFileSync = function (src, dest) {
 
 	for (const version of versionsNeedToUpdate) {
 		for (const filePath in version.files) {
-			if (["config.json", "configCommands.json"].includes(filePath)) {
+			if (["config.dev.json", "configCommands.dev.json"].includes(filePath)) {
 				if (!createUpdate.files[filePath])
 					createUpdate.files[filePath] = {};
 
@@ -165,7 +165,7 @@ fs.copyFileSync = function (src, dest) {
 			continue;
 		}
 
-		if (["config.json", "configCommands.json"].includes(filePath)) {
+		if (["config.dev.json", "configCommands.dev.json"].includes(filePath)) {
 			const currentConfig = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
 			const configValueUpdate = files[filePath];
 
